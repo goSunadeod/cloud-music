@@ -186,3 +186,16 @@ export const alphaTypes = [{
   name: "Z"
 }
 ];
+
+//歌单一页限定歌曲数量
+export const ONE_PAGE_COUNT = 50;
+
+//顶部的高度
+export const HEADER_HEIGHT = 45;
+
+// 播放模式
+export const playMode = {
+  sequence: 0,
+  loop: 1,
+  random: 2
+};

@@ -1,6 +1,6 @@
 import React from 'react';
 import LazyLoad from "react-lazyload";
-import { withRouter } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import {
   ListWrapper,
   ListItem,
@@ -9,9 +9,9 @@ import {
 import { getCount } from "../../api/utils";
 
 function RecommendList(props) {
-
+  const history = useHistory();
   const enterDetail = (id) => {
-    props.history.push(`/recommend/${id}`)
+    history.push(`/recommend/${id}`)
   }
   return (
     <ListWrapper>
@@ -42,4 +42,4 @@ function RecommendList(props) {
   );
 }
 
-export default React.memo(withRouter(RecommendList));
+export default React.memo(RecommendList);
