@@ -1,6 +1,6 @@
 import React from 'react';
 import { TopDesc, Menu } from './style';
-import SongsList from '../../application/SongList/';
+import SongsList from '../../application/SongList';
 
 function AlbumDetail(props) {
   const { currentAlbum, pullUpLoading } = props;

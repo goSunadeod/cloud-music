@@ -1,8 +1,8 @@
 import React, { useState, useRef, useEffect, useCallback } from "react";
 import { CSSTransition } from "react-transition-group";
 import animations from "create-keyframe-animation";
-import ProgressBar from "../../../baseUI/progress-bar/index";
-import Scroll from "../../../baseUI/scroll/index";
+import ProgressBar from "../../../baseUI/ProgressBar";
+import Scroll from "../../../baseUI/Scroll";
 import { playMode, list } from "../../../api/config";
 import { prefixStyle, formatPlayTime, getName } from "../../../api/utils";
 import {
@@ -198,10 +198,10 @@ function NormalPlayer(props) {
               }}
               playing={playing}
             >
-              <div className={`needle ${playing? '' : 'pause'}`}></div>
+              <div className={`needle ${playing ? '' : 'pause'}`}></div>
               <div className="cd">
                 <img
-                  className={`image play ${playing? '' : 'pause'}`}
+                  className={`image play ${playing ? '' : 'pause'}`}
                   src={song.al.picUrl + "?param=400x400"}
                   alt=""
                 />
@@ -227,20 +227,20 @@ function NormalPlayer(props) {
                   {
                     currentLyric
                       ? currentLyric.lines.map((item, index) => {
-                      lyricLineRefs.current[index] = React.createRef();
-                      return (
-                        <p
-                          className={`text ${
-                            currentLineNum === index ? "current" : ""
-                          }`}
-                          key={item + index}
-                          ref={lyricLineRefs.current[index]}
-                        >
-                          {item.txt}
-                        </p>
-                      );
-                    })
-                  : <p className="text pure">纯音乐，请欣赏。</p>}
+                        lyricLineRefs.current[index] = React.createRef();
+                        return (
+                          <p
+                            className={`text ${
+                              currentLineNum === index ? "current" : ""
+                              }`}
+                            key={item + index}
+                            ref={lyricLineRefs.current[index]}
+                          >
+                            {item.txt}
+                          </p>
+                        );
+                      })
+                      : <p className="text pure">纯音乐，请欣赏。</p>}
                 </LyricWrapper>
               </Scroll>
             </LyricContainer>
@@ -252,11 +252,11 @@ function NormalPlayer(props) {
             {
               list.map((item) => {
                 return (
-                  <ListItem 
+                  <ListItem
                     key={item.key}
-                    className={`${speed === item.key ? 'selected': ''}`} 
+                    className={`${speed === item.key ? 'selected' : ''}`}
                     onClick={() => clickSpeed(item.key)}>
-                      {item.name}
+                    {item.name}
                   </ListItem>
                 )
               })

@@ -12,7 +12,7 @@ import {
 } from "./store/actionCreators";
 import { isEmptyObject, shuffle, findIndex, getSongUrl } from "../../api/utils";
 import PlayList from "./play-list/index";
-import Toast from "./../../baseUI/toast/index";
+import Toast from "./../../baseUI/Toast/index";
 import Lyric from "../../api/lyric-parser";
 import MiniPlayer from "./mini-player";
 import NormalPlayer from "./normal-player";
@@ -30,9 +30,9 @@ function Player(props) {
   const {
     speed,
     playing,
-    currentSong:immutableCurrentSong,
+    currentSong: immutableCurrentSong,
     currentIndex,
-    playList:immutablePlayList,
+    playList: immutablePlayList,
     mode,
     sequencePlayList: immutableSequencePlayList,
     fullScreen
@@ -61,7 +61,7 @@ function Player(props) {
   const currentLyric = useRef();
   const currentLineNum = useRef(0);
   const songReady = useRef(true);
- 
+
   useEffect(() => {
     if (
       !playList.length ||
@@ -70,7 +70,7 @@ function Player(props) {
       playList[currentIndex].id === preSong.id ||
       !songReady.current
     )
-    return;
+      return;
     songReady.current = false;
     let current = playList[currentIndex];
     changeCurrentDispatch(current);
@@ -101,7 +101,7 @@ function Player(props) {
   }, [fullScreen]);
 
   const handleLyric = ({ lineNum, txt }) => {
-    if(!currentLyric.current)return;
+    if (!currentLyric.current) return;
     currentLineNum.current = lineNum;
     setPlayingLyric(txt);
   };
@@ -118,7 +118,7 @@ function Player(props) {
     getLyricRequest(id)
       .then(data => {
         lyric = data.lrc && data.lrc.lyric;
-        if(!lyric) {
+        if (!lyric) {
           currentLyric.current = null;
           return;
         }
@@ -137,8 +137,8 @@ function Player(props) {
   const clickPlaying = (e, state) => {
     e.stopPropagation();
     togglePlayingDispatch(state);
-    if(currentLyric.current) {
-      currentLyric.current.togglePlay(currentTime*1000);
+    if (currentLyric.current) {
+      currentLyric.current.togglePlay(currentTime * 1000);
     }
   };
 
@@ -230,7 +230,7 @@ function Player(props) {
     changeSpeedDispatch(newSpeed);
     audioRef.current.playbackRate = newSpeed;
     currentLyric.current.changeSpeed(newSpeed);
-    currentLyric.current.seek(currentTime*1000);
+    currentLyric.current.seek(currentTime * 1000);
   }
 
   return (

@@ -10,7 +10,7 @@ import Loading from './../../baseUI/Loading';
 import Header from './../../baseUI/Header';
 import AlbumDetail from '../../components/AlbumDetail';
 import { HEADER_HEIGHT } from './../../api/config';
-// import MusicNote from '../../baseUI/music-note/index';
+import MusicNote from '../../baseUI/MusicNote';
 import { isEmptyObject } from '../../api/utils';
 
 function Album(props) {
@@ -88,7 +88,7 @@ function Album(props) {
           ) : null
         }
         {enterLoading ? <EnterLoading><Loading></Loading></EnterLoading> : null}
-        {/* <MusicNote ref={musicNoteRef}></MusicNote> */}
+        <MusicNote ref={musicNoteRef}></MusicNote>
       </Container>
     </CSSTransition>
   );

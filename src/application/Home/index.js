@@ -2,13 +2,15 @@ import React from 'react';
 import { renderRoutes } from 'react-router-config';
 import { NavLink } from 'react-router-dom';
 import { Top, Tab, TabItem } from './style';
+import Player from '../Player';
 
-function Home (props) {
+
+function Home(props) {
   const { route } = props;
 
   return (
     <>
-       <Top>
+      <Top>
         <span className="iconfont menu">&#xe65c;</span>
         <span className="title">WebApp</span>
         <span className="iconfont search">&#xe62b;</span>
@@ -18,9 +20,10 @@ function Home (props) {
         <NavLink to="/singers" activeClassName="selected"><TabItem><span > 歌手 </span></TabItem></NavLink>
         <NavLink to="/rank" activeClassName="selected"><TabItem><span > 排行榜 </span></TabItem></NavLink>
       </Tab>
-      { renderRoutes (route.routes) }
+      {renderRoutes(route.routes)}
+      <Player></Player>
     </>
   )
 }
 
-export default React.memo (Home);
+export default React.memo(Home);
