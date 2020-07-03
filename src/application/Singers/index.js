@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
 import { connect } from 'react-redux';
 import LazyLoad, { forceCheck } from 'react-lazyload';
 import Horizen from '../../baseUI/HorizenItem';
@@ -16,6 +16,7 @@ import {
 } from './store/actionCreators';
 import Scroll from '../../baseUI/Scroll';
 import Loading from '../../baseUI/Loading';
+import { CHANGE_ALPHA, CHANGE_CATEGORY, CategoryDataContext } from './data';
 
 
 
@@ -23,24 +24,25 @@ function Singers(props) {
   const { singerList, enterLoading, pullUpLoading, pullDownLoading, pageCount } = props;
   const { getHotSingerDispatch, updateDispatch, pullDownRefreshDispatch, pullUpRefreshDispatch } = props;
 
-  let [category, setCategory] = useState('');
-  let [alpha, setAlpha] = useState('');
+  const { data, dispatch } = useContext(CategoryDataContext);
+  // 拿到 category 和 alpha 的值
+  const { category, alpha } = data.toJS();
 
   useEffect(() => {
-    getHotSingerDispatch();
-    // eslint-disable-next-line
-  }, []);
+    if (!singerList.size) {
+      getHotSingerDispatch();
+    }
+  }, [getHotSingerDispatch, singerList.size]);
 
   let handleUpdateAlpha = (val) => {
-    setAlpha(val);
+    dispatch({ type: CHANGE_ALPHA, data: val });
     updateDispatch(category, val);
-  }
+  };
 
   let handleUpdateCatetory = (val) => {
-    console.log(12121, val)
-    setCategory(val);
+    dispatch({ type: CHANGE_CATEGORY, data: val });
     updateDispatch(val, alpha);
-  }
+  };
 
   const handlePullUp = () => {
     pullUpRefreshDispatch(category, alpha, category === '', pageCount);
