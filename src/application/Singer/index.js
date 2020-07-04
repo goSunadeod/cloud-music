@@ -11,7 +11,7 @@ import { EnterLoading } from "../Singers/style";
 import { changeEnterLoading } from "./store/actionCreators";
 import { CSSTransition } from "react-transition-group";
 import SongsList from "../SongList";
-import MusicNote from "../../baseUI/musicNote";
+import MusicNote from "../../baseUI/MusicNote";
 
 function Singer(props) {
   const initialHeight = useRef(0);
